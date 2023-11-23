@@ -23,6 +23,11 @@ int main( int argc, char** argv )
     return EXIT_FAILURE;
   }
 
+  if ( ! ( mm_is_matrix(type) && mm_is_sparse(type) && mm_is_real(type) ) ) {
+    printf("This example expects a real sparse matrix!\n");
+    return EXIT_SUCCESS;
+  }
+
   int M, N, nz;
   res = mm_read_mtx_crd_size(f, &M, &N, &nz);
   if ( res ) {
@@ -34,9 +39,7 @@ int main( int argc, char** argv )
   int* J = (int*) malloc( nz*sizeof(int) );
   double* val = (double*) malloc( nz*sizeof(double) );
 
-  res = mm_read_mtx_crd_data(f, type,
-    M, N, nz,
-    I, J, val);
+  res = mm_read_mtx_crd_real_data( f, nz, I, J, val );
   if ( res ) {
     fprintf(stderr, "Failed to read the matrix data in file %s at line # %d", __FILE__, __LINE__);
     return EXIT_FAILURE;
