@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include <cblas.h>
 #include "mmio.h"
+
 #include "utils.h"
 
 int main( int argc, char** argv )
@@ -65,9 +67,31 @@ int main( int argc, char** argv )
   free(J);
   free(val);
 
-  print_matrix( stdout, ld, M, N, A );
+  double* x = (double*) aligned_alloc( AVX512ALIGN, N*sizeof( double ) );
+  int const incx = 1;
+  double* y = (double*) aligned_alloc( AVX512ALIGN, N*sizeof( double ) );
+  int const incy = 1;
+
+  for ( int i = 0; i < N; ++i ) {
+    x[i] = 0.0;
+    y[i] = 0.0;
+  }
+  x[0] = 1.0;
+
+  double const alpha = 1.0;
+  double const beta = 0.0;
+
+  cblas_dgemv(CblasRowMajor, CblasNoTrans, M, N,
+    alpha, A, ld,
+    x, incx, beta,
+    y, incy );
+
+  printf("y = \n");
+  print_vector( stdout, N, incy, y );
 
   free( A );
+  free( x );
+  free( y );
 
   return EXIT_SUCCESS;
 }
