@@ -55,5 +55,9 @@ int main( int argc, char** argv )
     printf ("%d: (%d , %d) = %lg\n", i, I[i], J[i], val[i] );
   }
 
+  free(I);
+  free(J);
+  free(val);
+
   return EXIT_SUCCESS;
 }
