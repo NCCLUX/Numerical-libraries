@@ -25,25 +25,26 @@ target_include_directories(read_matrix PRIVATE
 )
 target_link_libraries( read_matrix PRIVATE matrix-market )
 
+set(UTILS_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/utils.c")
+add_library(utils STATIC "${UTILS_SRC_FILES}")
+
 set(READ_AND_EXECUTE_SRC_FILES
   "${CMAKE_SOURCE_DIR}/${SRC_FILES}/read_and_execute.c"
-  "${CMAKE_SOURCE_DIR}/${SRC_FILES}/utils.c"
 )
 add_executable(read_and_execute "${READ_AND_EXECUTE_SRC_FILES}")
 target_include_directories(read_and_execute PRIVATE
   "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
 )
-target_link_libraries( read_and_execute PRIVATE matrix-market )
+target_link_libraries( read_and_execute PRIVATE matrix-market utils )
 
 set(EXAMPLE_EXECUTE_SRC_FILES
   "${CMAKE_SOURCE_DIR}/${SRC_FILES}/example_execute.c"
-  "${CMAKE_SOURCE_DIR}/${SRC_FILES}/utils.c"
 )
 add_executable(example_execute "${EXAMPLE_EXECUTE_SRC_FILES}")
 target_include_directories(example_execute PRIVATE
   "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
 )
-target_link_libraries( example_execute PRIVATE cblas blas )
+target_link_libraries( example_execute PRIVATE cblas blas utils )
 
 ##target_link_directories( read_matrix PRIVATE "$ENV{HOME}/opt/matrix-market/lib")
 #find_library( MM NAME matrixmarket 
