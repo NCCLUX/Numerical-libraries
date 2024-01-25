@@ -1,22 +1,43 @@
+###
+# Add external libraries
+
+set( LOCAL_OPT_DIR "$ENV{HOME}/.local" )
+
 add_library( matrix-market SHARED IMPORTED )
 set_target_properties( matrix-market PROPERTIES
-  IMPORTED_LOCATION "$ENV{HOME}/opt/matrix-market/lib/libmatrixmarket.so"
-  INTERFACE_INCLUDE_DIRECTORIES "$ENV{HOME}/opt/matrix-market/include"
+  IMPORTED_LOCATION "${LOCAL_OPT_DIR}/matrix-market/lib/libmatrixmarket.so"
+  INTERFACE_INCLUDE_DIRECTORIES "${LOCAL_OPT_DIR}/matrix-market/include"
   POSITION_INDEPENDENT_CODE ON
 )
 
 add_library( blas SHARED IMPORTED )
 set_target_properties( blas PROPERTIES
-  IMPORTED_LOCATION "$ENV{HOME}/.local/netlib/lib/libblas.so"
-  INTERFACE_INCLUDE_DIRECTORIES "$ENV{HOME}/.local/netlib/include"
+  IMPORTED_LOCATION "${LOCAL_OPT_DIR}/netlib/lib/libblas.so"
+  INTERFACE_INCLUDE_DIRECTORIES "${LOCAL_OPT_DIR}/netlib/include"
   POSITION_INDEPENDENT_CODE ON
 )
 add_library( cblas SHARED IMPORTED )
 set_target_properties( cblas PROPERTIES
-  IMPORTED_LOCATION "$ENV{HOME}/.local/netlib/lib/libcblas.so"
-  INTERFACE_INCLUDE_DIRECTORIES "$ENV{HOME}/.local/netlib/include"
+  IMPORTED_LOCATION "${LOCAL_OPT_DIR}/netlib/lib/libcblas.so"
+  INTERFACE_INCLUDE_DIRECTORIES "${LOCAL_OPT_DIR}/netlib/include"
   POSITION_INDEPENDENT_CODE ON
 )
+
+###
+# Create utility library
+
+set(UTILS_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/utils.c")
+add_library(utils STATIC "${UTILS_SRC_FILES}")
+
+###
+# Create example executables
+
+set( EXAMPLE_01_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/example_01_ddot.c")
+add_executable(example_01_ddot "${EXAMPLE_01_SRC_FILES}")
+target_include_directories(example_01_ddot PRIVATE
+  "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
+)
+target_link_libraries( example_01_ddot PRIVATE utils cblas blas m )
 
 set(READ_MATRIX_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/read_matrix.c")
 add_executable(read_matrix "${READ_MATRIX_SRC_FILES}")
@@ -24,9 +45,6 @@ target_include_directories(read_matrix PRIVATE
   "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
 )
 target_link_libraries( read_matrix PRIVATE matrix-market )
-
-set(UTILS_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/utils.c")
-add_library(utils STATIC "${UTILS_SRC_FILES}")
 
 set(READ_AND_EXECUTE_SRC_FILES
   "${CMAKE_SOURCE_DIR}/${SRC_FILES}/read_and_execute.c"
