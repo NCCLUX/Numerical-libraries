@@ -1,20 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <math.h>
 #include <time.h>
 
 #include <cblas.h>
 
 #include "utils.h"
-
-static void set_test_vector(
-  double const alpha, double const omega, double const phi,
-  int const n, double* const v )
-{
-  for ( int t = 0; t < n; ++t ) {
-    v[t] = alpha*sin( t*omega + phi );
-  }
-}
 
 static void test_edge_case_ddot()
 {
@@ -37,18 +27,18 @@ static void test_edge_case_ddot()
 
 static void test_performance_ddot( int const n, int const incx )
 {
+  double* const x = (double*) malloc( (n * incx) * sizeof(double) );
+  double* const y = (double*) malloc( n * sizeof(double) );
+
   double const phi = 0.0;
   double omega = 0.1;
   double alpha = 0.5;
 
-  double* const x = (double*) malloc( (n * incx) * sizeof(double) );
-  double* const y = (double*) malloc( n * sizeof(double) );
-
-  set_test_vector( alpha, omega, phi, n, x );
+  sample_harmonic_signal( alpha, omega, phi, n, x );
   
   omega = 0.5;
   alpha = 0.1;
-  set_test_vector( alpha, omega, phi, n, y );
+  sample_harmonic_signal( alpha, omega, phi, n, y );
 
   int const incy = 1;
 

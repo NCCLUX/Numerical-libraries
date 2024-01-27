@@ -28,16 +28,17 @@ set_target_properties( cblas PROPERTIES
 
 set(UTILS_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/utils.c")
 add_library(utils STATIC "${UTILS_SRC_FILES}")
+target_link_libraries( utils PRIVATE m )
 
 ###
 # Create example executables
 
-set( EXAMPLE_01_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/example_01_ddot.c")
-add_executable(example_01_ddot "${EXAMPLE_01_SRC_FILES}")
-target_include_directories(example_01_ddot PRIVATE
+set( 00_EXAMPLE_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/00_example_ddot.c")
+add_executable(00_example_ddot "${00_EXAMPLE_SRC_FILES}")
+target_include_directories(00_example_ddot PRIVATE
   "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
 )
-target_link_libraries( example_01_ddot PRIVATE utils cblas blas m )
+target_link_libraries( 00_example_ddot PRIVATE utils cblas blas )
 
 set(READ_MATRIX_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/read_matrix.c")
 add_executable(read_matrix "${READ_MATRIX_SRC_FILES}")

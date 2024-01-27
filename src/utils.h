@@ -4,6 +4,10 @@
 // AVX-512 used 64byte alignment
 #define AVX512ALIGN 64
 
+void sample_harmonic_signal(
+  double const alpha, double const omega, double const phi,
+  int const n, double* const v );
+
 void copy_coo_to_dns( int const nz, int const ld, int const ncols,
   int const* const row, int const* const col, double const* const a,
   double* const val );

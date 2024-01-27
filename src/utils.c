@@ -1,7 +1,17 @@
+#include "utils.h"
+
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
-#include "utils.h"
+void sample_harmonic_signal(
+  double const alpha, double const omega, double const phi,
+  int const n, double* const v )
+{
+  for ( int t = 0; t < n; ++t ) {
+    v[t] = alpha*sin( t*omega + phi );
+  }
+}
 
 void copy_coo_to_dns( int const nz, int const ld, int const ncols,
   int const* const row, int const* const col, double const* const a,
