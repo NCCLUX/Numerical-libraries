@@ -6,6 +6,19 @@
 
 #include "utils.h"
 
+static void load_blas()
+{
+  int const n = 2;
+  double const x[] = { -1.0, 1.0 };
+  double const y[] = {  1.0, 2.0 };
+  
+  int incx = 1;
+  int incy = 1;
+  double const ddot_incx1 = cblas_ddot( n, x, incx, y, incy );
+
+  printf( "*** Loaded BLAS ***\n" );
+}
+
 static void ddot_multiplication( matrix const* A, vector const* x )
 {
   if ( A == NULL || x == NULL ) return;
@@ -143,6 +156,8 @@ int main( int argc, char** argv )
     fprintf( stderr, "Where the size of the multiplied matrix is: M x N\n" );
     return EXIT_FAILURE;
   }
+
+  load_blas();
 
   int m, n;
   int err = parse_size_arg( argv[1], &m );
