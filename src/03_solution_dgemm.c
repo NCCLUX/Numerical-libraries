@@ -16,8 +16,8 @@ static void call_dgemm( matrix const* const A, matrix const* const B, matrix* co
   }
 
   int const m = A->nrows;
-  int const n = A->ncols;
-  int const k = B->nrows;
+  int const k = A->ncols;
+  int const n = B->ncols;
   int const lda = A->ld;
   int const ldb = B->ld;
   int const ldc = C->ld;
