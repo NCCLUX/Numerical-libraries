@@ -18,6 +18,9 @@ static void call_dgemm( matrix const* const A, matrix const* const B, matrix* co
   int const m = A->nrows;
   int const n = A->ncols;
   int const k = B->nrows;
+  int const lda = A->ld;
+  int const ldb = B->ld;
+  int const ldc = C->ld;
 
   double const alpha = 1.0;
   double const beta = 0.0;
@@ -25,10 +28,10 @@ static void call_dgemm( matrix const* const A, matrix const* const B, matrix* co
     CblasNoTrans, CblasNoTrans, 
     m, n, k,
     alpha,
-    A->data, A->ld,
-    B->data, B->ld,
+    A->data, lda,
+    B->data, ldb,
     beta,
-    C->data, C->ld
+    C->data, ldc
  );
 }
 
