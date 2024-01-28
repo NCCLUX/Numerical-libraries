@@ -56,6 +56,20 @@ target_include_directories(01_solution_daxpy PRIVATE
 )
 target_link_libraries( 01_solution_daxpy PRIVATE utils cblas blas )
 
+# 02. EXCERCISE
+set( 02_EXERCISE_DGEMV_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/02_exercise_dgemv.c")
+add_executable(02_exercise_dgemv "${02_EXERCISE_DGEMV_SRC_FILES}")
+target_include_directories(02_exercise_dgemv PRIVATE
+  "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
+)
+target_link_libraries( 02_exercise_dgemv PRIVATE utils cblas blas )
+
+set( 02_SOLUTION_DGEMV_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/02_solution_dgemv.c")
+add_executable(02_solution_dgemv "${02_SOLUTION_DGEMV_SRC_FILES}")
+target_include_directories(02_solution_dgemv PRIVATE
+  "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
+)
+target_link_libraries( 02_solution_dgemv PRIVATE utils cblas blas )
 
 set(READ_MATRIX_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/read_matrix.c")
 add_executable(read_matrix "${READ_MATRIX_SRC_FILES}")

@@ -13,7 +13,7 @@ struct _vector {
 };
 typedef struct _vector vector;
 
-struct _dense_matrix {
+struct _matrix {
   /* Data structure for dense real matrices */
   double* data;
   int nrows;    // Number of rows
@@ -21,7 +21,7 @@ struct _dense_matrix {
   int ld;  // Leading dimension
   int size; // Maximun capacity of the space allocated for a
 };
-typedef struct _dense_matrix dense_matrix;
+typedef struct _matrix matrix;
 
 void sample_harmonic_signal(
   double const alpha, double const omega, double const phi,
@@ -33,7 +33,7 @@ void copy_coo_to_dns( int const nz, int const ld, int const ncols,
 
 int get_ld( int const entries, int const type_cache_alignment );
 
-void print_matrix_struct( FILE* const f, dense_matrix const* const a );
+void print_matrix_struct( FILE* const f, matrix const* const a );
 
 void print_vector_struct( FILE* const f, vector const* const v );
 

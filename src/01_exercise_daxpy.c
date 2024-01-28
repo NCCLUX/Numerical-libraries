@@ -6,7 +6,7 @@
 
 #include "utils.h"
 
-static void call_daxpy( vector* v, double alpha )
+static void call_daxpy( vector* const v, double const alpha )
 {
   // call the appropriate BLAS function
 }
@@ -19,6 +19,10 @@ static void test_daxpy()
   int const inc = 1;
   int const size = nrows*inc;
   double* const data = (double*) malloc( size * sizeof(double) );
+  if ( data == NULL ) {
+    fprintf( stderr, "Memory allocation failed.\n" );
+    exit( EXIT_FAILURE );
+  }
 
   data[0] = 1.0;
   data[1] = 2.0;

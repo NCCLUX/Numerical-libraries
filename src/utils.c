@@ -42,7 +42,7 @@ int get_ld( int const entries, int const type_cache_alignment )
   return aligned_entries;
 }
 
-void print_matrix_struct( FILE* const f, dense_matrix const* const a )
+void print_matrix_struct( FILE* const f, matrix const* const a )
 {
   if ( a == NULL ) return;
 
