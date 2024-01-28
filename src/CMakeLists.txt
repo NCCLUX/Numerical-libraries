@@ -33,12 +33,29 @@ target_link_libraries( utils PRIVATE m )
 ###
 # Create example executables
 
-set( 00_EXAMPLE_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/00_example_ddot.c")
-add_executable(00_example_ddot "${00_EXAMPLE_SRC_FILES}")
+# 00. EXAMPLE
+set( 00_EXAMPLE_DDOT_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/00_example_ddot.c")
+add_executable(00_example_ddot "${00_EXAMPLE_DDOT_SRC_FILES}")
 target_include_directories(00_example_ddot PRIVATE
   "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
 )
 target_link_libraries( 00_example_ddot PRIVATE utils cblas blas )
+
+# 01. EXCERCISE
+set( 01_EXERCISE_DAXPY_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/01_exercise_daxpy.c")
+add_executable(01_exercise_daxpy "${01_EXERCISE_DAXPY_SRC_FILES}")
+target_include_directories(01_exercise_daxpy PRIVATE
+  "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
+)
+target_link_libraries( 01_exercise_daxpy PRIVATE utils cblas blas )
+
+set( 01_SOLUTION_DAXPY_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/01_solution_daxpy.c")
+add_executable(01_solution_daxpy "${01_SOLUTION_DAXPY_SRC_FILES}")
+target_include_directories(01_solution_daxpy PRIVATE
+  "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
+)
+target_link_libraries( 01_solution_daxpy PRIVATE utils cblas blas )
+
 
 set(READ_MATRIX_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/read_matrix.c")
 add_executable(read_matrix "${READ_MATRIX_SRC_FILES}")
