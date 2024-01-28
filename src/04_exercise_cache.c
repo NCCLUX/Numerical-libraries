@@ -126,7 +126,7 @@ static int parse_size_arg( char* argvi, int* val )
   char* end;
   *val = strtol( argvi, &end, base );
   if ( end == argvi ) {
-    fprintf( stderr, "Invalid vector size.\n" );
+    fprintf( stderr, "Invalid size.\n" );
     return EXIT_FAILURE;
   } else if ( *end != '\0') {
     fprintf( stderr, "Invalid input: %s\n", argvi );
