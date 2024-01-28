@@ -101,6 +101,20 @@ target_include_directories(04_solution_cache PRIVATE
 )
 target_link_libraries( 04_solution_cache PRIVATE utils cblas blas )
 
+# 05. EXCERCISE
+set( 05_EXERCISE_ALIGNMENT_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/05_exercise_alignment.c")
+add_executable(05_exercise_alignment "${05_EXERCISE_ALIGNMENT_SRC_FILES}")
+target_include_directories(05_exercise_alignment PRIVATE
+  "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
+)
+target_link_libraries( 05_exercise_alignment PRIVATE utils cblas blas )
+
+set( 05_SOLUTION_ALIGNMENT_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/05_solution_alignment.c")
+add_executable(05_solution_alignment "${05_SOLUTION_ALIGNMENT_SRC_FILES}")
+target_include_directories(05_solution_alignment PRIVATE
+  "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
+)
+target_link_libraries( 05_solution_alignment PRIVATE utils cblas blas )
 
 
 # DEMOS
