@@ -71,6 +71,23 @@ target_include_directories(02_solution_dgemv PRIVATE
 )
 target_link_libraries( 02_solution_dgemv PRIVATE utils cblas blas )
 
+# 03. EXCERCISE
+set( 03_EXERCISE_DGEMM_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/03_exercise_dgemm.c")
+add_executable(03_exercise_dgemm "${03_EXERCISE_DGEMM_SRC_FILES}")
+target_include_directories(03_exercise_dgemm PRIVATE
+  "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
+)
+target_link_libraries( 03_exercise_dgemm PRIVATE utils cblas blas )
+
+set( 03_SOLUTION_DGEMM_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/03_solution_dgemm.c")
+add_executable(03_solution_dgemm "${03_SOLUTION_DGEMM_SRC_FILES}")
+target_include_directories(03_solution_dgemm PRIVATE
+  "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
+)
+target_link_libraries( 03_solution_dgemm PRIVATE utils cblas blas )
+
+
+
 set(READ_MATRIX_SRC_FILES "${CMAKE_SOURCE_DIR}/${SRC_FILES}/read_matrix.c")
 add_executable(read_matrix "${READ_MATRIX_SRC_FILES}")
 target_include_directories(read_matrix PRIVATE

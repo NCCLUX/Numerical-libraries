@@ -7,19 +7,19 @@
 struct _vector {
   /* Data structure for dense real matrices */
   double* data;
-  int nrows;    // Number of rows
-  int inc; // Increment
-  int size; // Maximun capacity of the space allocated for v 
+  int nrows; // Number of rows
+  int inc;   // Increment
+  int size;  // Maximun capacity of the space allocated for v 
 };
 typedef struct _vector vector;
 
 struct _matrix {
   /* Data structure for dense real matrices */
   double* data;
-  int nrows;    // Number of rows
-  int ncols;    // Number of columns
-  int ld;  // Leading dimension
-  int size; // Maximun capacity of the space allocated for a
+  int nrows; // Number of rows
+  int ncols; // Number of columns
+  int ld;    // Leading dimension
+  int size;  // Maximun capacity of the space allocated for a
 };
 typedef struct _matrix matrix;
 
