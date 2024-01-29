@@ -9,7 +9,7 @@
     {
       "name": "default-config",
       "binaryDir": "${sourceDir}/build/Release",
-      "generator": "Ninja",
+      "generator": "Unix Makefiles",
       "cacheVariables": {
         "BUILD_SHARED_LIBS": { "type": "BOOL", "value": true },
         "CMAKE_BUILD_TYPE": { "type": "STRING", "value": "Release" }
