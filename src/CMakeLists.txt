@@ -1,7 +1,7 @@
 ###
 # Add external libraries
 
-set( LOCAL_OPT_DIR "$ENV{HOME}/.local" )
+set( LOCAL_OPT_DIR "$ENV{HOME}/.local/opt" )
 
 add_library( matrix-market SHARED IMPORTED )
 set_target_properties( matrix-market PROPERTIES
