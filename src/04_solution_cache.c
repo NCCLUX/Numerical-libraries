@@ -19,7 +19,7 @@ static void load_blas()
   printf( "*** Loaded BLAS ***\n" );
 }
 
-static void ddot_multiplication( matrix const* A, vector const* x )
+static void ddot_matrix_vector_multiply( matrix const* A, vector const* x )
 {
   if ( A == NULL || x == NULL ) return;
 
@@ -50,7 +50,7 @@ static void ddot_multiplication( matrix const* A, vector const* x )
   printf("ddot duration = %f\n", duration ); 
 }
 
-static void daxpy_multiplication( matrix const* A, vector const* x )
+static void daxpy_matrix_vector_multiply( matrix const* A, vector const* x )
 {
   if ( A == NULL || x == NULL ) return;
 
@@ -141,8 +141,8 @@ static void test_stride_effect( int const m, int const n )
   get_x( &x, n );
 
   printf( "*** Stride effect test ***\n" );
-  ddot_multiplication( &A, &x );
-  daxpy_multiplication( &A, &x );
+  ddot_matrix_vector_multiply( &A, &x );
+  daxpy_matrix_vector_multiply( &A, &x );
 
   free(A.data);
   free(x.data);

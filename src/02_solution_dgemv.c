@@ -5,7 +5,7 @@
 
 #include "utils.h"
 
-static void call_dgemv( matrix const* const A, vector const* const x, vector* const y )
+static void matrix_vector_multiply( matrix const* const A, vector const* const x, vector* const y )
 {
   double const alpha = 1.0;
   double const beta = 0.0;
@@ -90,7 +90,7 @@ static void test_dgemv()
   get_x(&x);
   get_y(&y);
 
-  call_dgemv( &A, &x, &y );
+  matrix_vector_multiply( &A, &x, &y );
 
   printf( "*** Result vector ***\n" );
   print_vector_struct( stdout, &y ); 

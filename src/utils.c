@@ -29,17 +29,17 @@ void copy_coo_to_dns( int const nz, int const ld, int const ncols,
   }
 }
 
-int get_ld( int const entries, int const type_cache_alignment )
+int get_ld( int const entries, int const type_entries_per_cache_line )
 {
-  int cache_lines = entries / type_cache_alignment;
+  int cache_lines = entries / type_entries_per_cache_line;
   
-  if ( entries % type_cache_alignment != 0 ) {
+  if ( entries % type_entries_per_cache_line != 0 ) {
     cache_lines += 1;
   }
 
-  int const aligned_entries = cache_lines * type_cache_alignment;
+  int const leading_dimension = cache_lines * type_entries_per_cache_line;
 
-  return aligned_entries;
+  return leading_dimension;
 }
 
 void print_matrix_struct( FILE* const f, matrix const* const a )

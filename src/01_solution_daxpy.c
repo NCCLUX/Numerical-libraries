@@ -5,7 +5,7 @@
 
 #include "utils.h"
 
-static void call_daxpy( vector* const v, double const alpha )
+static void scale_vector( vector* const v, double const alpha )
 {
   cblas_daxpy( v->nrows, alpha - 1.0, v->data, v->inc, v->data, v->inc );
 }
@@ -34,7 +34,7 @@ static void test_daxpy()
 
   printf( "*** Original vector X ***\n" );
   print_vector_struct( stdout, &v ); 
-  call_daxpy( &v, alpha );
+  scale_vector( &v, alpha );
   printf( "*** %f*X ***\n", alpha );
   print_vector_struct( stdout, &v ); 
 

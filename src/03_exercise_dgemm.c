@@ -5,9 +5,9 @@
 
 #include "utils.h"
 
-static void call_dgemm( matrix const* const A, matrix const* const B, matrix* const C )
+static void matrix_multiply( matrix const* const A, matrix const* const B, matrix* const C )
 {
-  // call the DGEMM function of BLAS
+  // call the DGEMM function of BLAS with appropriate argument so that: C = A*B
 }
 
 static void get_A( matrix* const A )
@@ -88,7 +88,7 @@ static void test_dgemm()
   get_B(&B);
   get_C(&C);
 
-  call_dgemm( &A, &B, &C );
+  matrix_multiply( &A, &B, &C );
 
   printf( "*** A matrix ***\n" );
   print_matrix_struct( stdout, &A ); 

@@ -39,7 +39,8 @@ static void get_M( matrix* const A, int const m, int const n )
   double const phi = 0.0;
   sample_harmonic_signal(
     alpha, omega, phi,
-    A->size, A->data );
+    A->size, A->data
+  );
 }
 
 static void get_v( vector* const x, int const n )
@@ -61,7 +62,8 @@ static void get_v( vector* const x, int const n )
   double const phi = 0.0;
   sample_harmonic_signal(
     alpha, omega, phi,
-    x->size, x->data );
+    x->size, x->data
+  );
 }
 
 static void get_aligned_M( matrix* const A, int const m, int const n )
@@ -86,7 +88,8 @@ static void get_aligned_M( matrix* const A, int const m, int const n )
   double const phi = 0.0;
   sample_harmonic_signal(
     alpha, omega, phi,
-    A->size, A->data );
+    A->size, A->data
+  );
 }
 
 static void get_aligned_v( vector* const x, int const n )
@@ -109,7 +112,8 @@ static void get_aligned_v( vector* const x, int const n )
   double const phi = 0.0;
   sample_harmonic_signal(
     alpha, omega, phi,
-    x->size, x->data );
+    x->size, x->data
+  );
 }
 
 static void test_alignment_effect( int const m, int const n )
@@ -128,13 +132,15 @@ static void test_alignment_effect( int const m, int const n )
   get_v( &y, m );
 
   clock_t start = clock();
-  cblas_dgemv( CblasColMajor,
+  cblas_dgemv(
+    CblasColMajor,
     CblasNoTrans, A.nrows, A.ncols,
     alpha,
     A.data, A.ld,
     x.data, x.inc,
     beta,
-    y.data, y.inc);
+    y.data, y.inc
+  );
   clock_t diff = clock() - start;
   double duration = (double) diff / CLOCKS_PER_SEC;
 
@@ -149,13 +155,15 @@ static void test_alignment_effect( int const m, int const n )
   get_aligned_v( &y, m );
 
   start = clock();
-  cblas_dgemv( CblasColMajor,
+  cblas_dgemv(
+    CblasColMajor,
     CblasNoTrans, A.nrows, A.ncols,
     alpha,
     A.data, A.ld,
     x.data, x.inc,
     beta,
-    y.data, y.inc);
+    y.data, y.inc
+  );
   diff = clock() - start;
   duration = (double) diff / CLOCKS_PER_SEC;
 

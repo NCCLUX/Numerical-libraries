@@ -5,9 +5,9 @@
 
 #include "utils.h"
 
-static void call_dgemv( matrix const* const A, vector const* const x, vector* const y )
+static void matrix_vector_multiply( matrix const* const A, vector const* const x, vector* const y )
 {
-  // call the DGEMV function of BLAS with appropriate arguments 
+  // call the DGEMV function of BLAS with appropriate arguments to get: y = A*x
 }
 
 static void get_A( matrix* const A )
@@ -81,7 +81,7 @@ static void test_dgemv()
   get_x(&x);
   get_y(&y);
 
-  call_dgemv( &A, &x, &y );
+  matrix_vector_multiply( &A, &x, &y );
 
   printf( "*** Result vector ***\n" );
   print_vector_struct( stdout, &y ); 
