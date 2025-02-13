@@ -5,20 +5,20 @@ set( LOCAL_OPT_DIR "$ENV{HOME}/.local/opt" )
 
 add_library( matrix-market SHARED IMPORTED )
 set_target_properties( matrix-market PROPERTIES
-  IMPORTED_LOCATION "${LOCAL_OPT_DIR}/matrix-market/lib/libmatrixmarket.so"
+  IMPORTED_LOCATION "${LOCAL_OPT_DIR}/matrix-market/lib64/libmatrixmarket.so"
   INTERFACE_INCLUDE_DIRECTORIES "${LOCAL_OPT_DIR}/matrix-market/include"
   POSITION_INDEPENDENT_CODE ON
 )
 
 add_library( blas SHARED IMPORTED )
 set_target_properties( blas PROPERTIES
-  IMPORTED_LOCATION "${LOCAL_OPT_DIR}/netlib/lib/libblas.so"
+  IMPORTED_LOCATION "${LOCAL_OPT_DIR}/netlib/lib64/libblas.so"
   INTERFACE_INCLUDE_DIRECTORIES "${LOCAL_OPT_DIR}/netlib/include"
   POSITION_INDEPENDENT_CODE ON
 )
 add_library( cblas SHARED IMPORTED )
 set_target_properties( cblas PROPERTIES
-  IMPORTED_LOCATION "${LOCAL_OPT_DIR}/netlib/lib/libcblas.so"
+  IMPORTED_LOCATION "${LOCAL_OPT_DIR}/netlib/lib64/libcblas.so"
   INTERFACE_INCLUDE_DIRECTORIES "${LOCAL_OPT_DIR}/netlib/include"
   POSITION_INDEPENDENT_CODE ON
 )
