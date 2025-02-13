@@ -43,7 +43,8 @@ static void test_performance_ddot( int const n, int const incx )
   int const incy = 1;
 
   clock_t start = clock();
-  double const ddot = cblas_ddot(n,
+  double const ddot = cblas_ddot(
+    n,
     x, incx,
     y, incy
   );
@@ -51,7 +52,8 @@ static void test_performance_ddot( int const n, int const incx )
   double const duration = (double) diff / CLOCKS_PER_SEC;
 
   printf( "*** Generic performance test ***\n" );
-  printf( "The dot-product of 2 vectors [ n=%d, incx=%d, incy=%d ] was evaluated to: %f\n",
+  printf(
+    "The dot-product of 2 vectors [ n=%d, incx=%d, incy=%d ] was evaluated to: %f\n",
     n, incx, incy, ddot
   );
   printf( "Time required for ddot: %f\n", duration );
