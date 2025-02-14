@@ -126,14 +126,14 @@ target_include_directories(read_matrix PRIVATE
 )
 target_link_libraries( read_matrix PRIVATE matrix-market )
 
-set(READ_AND_EXECUTE_SRC_FILES
-  "${CMAKE_SOURCE_DIR}/${SRC_FILES}/read_and_execute.c"
-)
-add_executable(read_and_execute "${READ_AND_EXECUTE_SRC_FILES}")
-target_include_directories(read_and_execute PRIVATE
-  "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
-)
-target_link_libraries( read_and_execute PRIVATE matrix-market utils cblas blas )
+#set(READ_AND_EXECUTE_SRC_FILES
+#  "${CMAKE_SOURCE_DIR}/${SRC_FILES}/read_and_execute.c"
+#)
+#add_executable(read_and_execute "${READ_AND_EXECUTE_SRC_FILES}")
+#target_include_directories(read_and_execute PRIVATE
+#  "${CMAKE_SOURCE_DIR}/${INCLUDE_FILES}"
+#)
+#target_link_libraries( read_and_execute PRIVATE matrix-market utils cblas blas )
 
 set(EXAMPLE_EXECUTE_SRC_FILES
   "${CMAKE_SOURCE_DIR}/${SRC_FILES}/example_execute.c"
